@@ -1,0 +1,36 @@
+OUT "Type 0 if you want to exit."
+OUT \n
+RETRY:
+OUT "Factorial of: "
+IN ax
+PUSH 0
+PUSH ax
+JE EXT
+
+PUSH ax
+CALL FACT
+OUT "Result: "
+OUT
+OUT \n
+JMP RETRY
+
+EXT:
+EXIT
+
+FACT:
+POP ax
+PUSH ax
+PUSH 1
+JE END
+PUSH ax
+PUSH ax
+PUSH 1
+SUB
+CALL FACT
+PROD
+RETURN
+END:
+PUSH 1
+RETURN
+
+

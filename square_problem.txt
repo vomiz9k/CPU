@@ -1,0 +1,47 @@
+OUT "This is working only if a != 0 and b^2-4ac >= 0."
+OUT \n
+OUT "A: "
+IN ax
+OUT "B: "
+IN bx
+OUT "C: "
+IN cx
+PUSH bx
+PUSH bx
+PROD
+PUSH ax
+PUSH cx
+PROD
+PUSH 4
+PROD
+SUB
+SQRT
+POP dx
+PUSH 0
+PUSH bx
+SUB
+POP bx
+PUSH bx
+PUSH dx
+ADD
+PUSH 2
+PUSH ax
+PROD
+DIV
+POP cx
+PUSH bx
+PUSH dx
+SUB
+PUSH 2
+PUSH ax
+PROD
+DIV
+POP dx
+OUT "RESULT1: "
+OUT cx
+OUT \n
+OUT "RESULT2: "
+OUT dx
+OUT \n
+EXIT
+

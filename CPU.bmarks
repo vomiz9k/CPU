@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<BrowseTracker_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="asm.cpp" open="1" top="1" tabpos="6">
+		<Cursor position="2983" topLine="112" />
+		<BrowseMarks positions="1163,1913,2451" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="asm.h" open="1" top="0" tabpos="8">
+		<Cursor position="387" topLine="1" />
+		<BrowseMarks positions="" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="87" topLine="0" />
+		<BrowseMarks positions="87" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="cpu.h" open="1" top="0" tabpos="10">
+		<Cursor position="97" topLine="0" />
+		<BrowseMarks positions="0" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="cpu.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="363" topLine="13" />
+		<BrowseMarks positions="" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="stack.h" open="0" top="0" tabpos="12">
+		<Cursor position="174" topLine="0" />
+	</File>
+	<File name="stringsort.h" open="1" top="0" tabpos="4">
+		<Cursor position="92" topLine="0" />
+		<BrowseMarks positions="" />
+		<Book_Marks positions="" />
+	</File>
+	<File name="cpu_commands.h" open="1" top="0" tabpos="8">
+		<Cursor position="1910" topLine="57" />
+		<BrowseMarks positions="5788" />
+		<Book_Marks positions="1207" />
+	</File>
+	<File name="stack.cpp" open="0" top="0" tabpos="8">
+		<Cursor position="49" topLine="0" />
+	</File>
+	<File name="enum_commands.h" open="0" top="0" tabpos="11">
+		<Cursor position="82" topLine="0" />
+	</File>
+	<File name="stringsort.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="29" topLine="89" />
+		<BrowseMarks positions="" />
+		<Book_Marks positions="" />
+	</File>
+</BrowseTracker_layout_file>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="cpu_commands.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="754" topLine="24" />
+		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+			<Collapse line="13" />
+			<Collapse line="40" />
+			<Collapse line="44" />
+			<Collapse line="52" />
+			<Collapse line="76" />
+			<Collapse line="83" />
+			<Collapse line="88" />
+			<Collapse line="95" />
+			<Collapse line="100" />
+			<Collapse line="107" />
+			<Collapse line="119" />
+			<Collapse line="124" />
+			<Collapse line="129" />
+			<Collapse line="144" />
+			<Collapse line="149" />
+			<Collapse line="154" />
+			<Collapse line="161" />
+			<Collapse line="166" />
+			<Collapse line="173" />
+		</Folding>
+	</File>
+	<File name="stringsort.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="29" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="6" />
+			<Collapse line="25" />
+			<Collapse line="30" />
+			<Collapse line="34" />
+			<Collapse line="42" />
+			<Collapse line="45" />
+			<Collapse line="54" />
+			<Collapse line="58" />
+			<Collapse line="71" />
+			<Collapse line="75" />
+			<Collapse line="85" />
+			<Collapse line="136" />
+			<Collapse line="142" />
+			<Collapse line="147" />
+			<Collapse line="153" />
+			<Collapse line="155" />
+			<Collapse line="166" />
+			<Collapse line="200" />
+			<Collapse line="206" />
+			<Collapse line="225" />
+			<Collapse line="229" />
+			<Collapse line="233" />
+			<Collapse line="240" />
+			<Collapse line="245" />
+			<Collapse line="256" />
+			<Collapse line="261" />
+			<Collapse line="265" />
+			<Collapse line="270" />
+			<Collapse line="278" />
+			<Collapse line="281" />
+			<Collapse line="288" />
+			<Collapse line="298" />
+		</Folding>
+	</File>
+	<File name="cpu.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="87" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="stringsort.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="92" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="asm.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="716" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="71" />
+		</Folding>
+	</File>
+	<File name="asm.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="119" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="cpu.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="328" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="enum_commands.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="82" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="stack.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="174" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="stack.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="49" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="3" />
+			<Collapse line="35" />
+			<Collapse line="81" />
+			<Collapse line="107" />
+			<Collapse line="134" />
+			<Collapse line="161" />
+			<Collapse line="165" />
+			<Collapse line="171" />
+			<Collapse line="174" />
+			<Collapse line="179" />
+			<Collapse line="191" />
+			<Collapse line="198" />
+			<Collapse line="202" />
+			<Collapse line="209" />
+			<Collapse line="227" />
+			<Collapse line="231" />
+			<Collapse line="235" />
+			<Collapse line="245" />
+			<Collapse line="255" />
+			<Collapse line="257" />
+		</Folding>
+	</File>
+</CodeBlocks_layout_file>

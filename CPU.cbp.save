@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CPU" />
+		<Option pch_mode="2" />
+		<Option compiler="gnu_gcc_compiler__strict" />
+		<Option virtualFolders="stack\;stringsort\;asm\;cpu\;others\;" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/CPU" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_compiler__strict" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/CPU" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_compiler__strict" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="asm.cpp">
+			<Option virtualFolder="asm/" />
+		</Unit>
+		<Unit filename="asm.h">
+			<Option virtualFolder="asm/" />
+		</Unit>
+		<Unit filename="cpu.cpp">
+			<Option virtualFolder="cpu/" />
+		</Unit>
+		<Unit filename="cpu.h">
+			<Option virtualFolder="cpu/" />
+		</Unit>
+		<Unit filename="cpu_commands.h">
+			<Option virtualFolder="others/" />
+		</Unit>
+		<Unit filename="enum_commands.h">
+			<Option virtualFolder="others/" />
+		</Unit>
+		<Unit filename="main.cpp" />
+		<Unit filename="musthave_include.h">
+			<Option virtualFolder="others/" />
+		</Unit>
+		<Unit filename="stack.cpp">
+			<Option virtualFolder="stack/" />
+		</Unit>
+		<Unit filename="stack.h">
+			<Option virtualFolder="stack/" />
+		</Unit>
+		<Unit filename="stringsort.cpp">
+			<Option virtualFolder="stringsort/" />
+		</Unit>
+		<Unit filename="stringsort.h">
+			<Option virtualFolder="stringsort/" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

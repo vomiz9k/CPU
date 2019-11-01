@@ -1,0 +1,11 @@
+#include "musthave_include.h"
+#include "stack.h"
+#include "asm.h"
+#include "cpu.h"
+
+
+int main()
+{
+    get_binary_file("square_problem.txt", "output.bin");
+    run_binary_file("output.bin");
+}

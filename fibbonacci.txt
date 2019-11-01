@@ -1,0 +1,49 @@
+OUT "Type 0 if you want to exit."  
+OUT \n
+RETRY:   
+OUT "Fibbonacci number: "
+IN ax
+PUSH 0
+PUSH ax
+JE EXT
+
+PUSH ax
+CALL FIB
+OUT "Result: "
+OUT 
+OUT \n
+OUT \n
+JMP RETRY
+
+EXT:  
+EXIT
+
+FIB:
+POP ax
+PUSH ax
+PUSH 2
+JBE FIRST_OR_SECOND
+
+PUSH ax
+PUSH 1
+SUB
+
+PUSH ax
+PUSH 2
+SUB
+
+CALL FIB
+POP bx
+POP cx
+PUSH bx
+PUSH cx
+CALL FIB
+
+ADD
+RETURN
+
+FIRST_OR_SECOND:
+PUSH 1
+RETURN
+
+
