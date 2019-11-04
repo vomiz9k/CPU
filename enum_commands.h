@@ -1,4 +1,4 @@
-#define LOCAL_COMMAND_DEF(command, to_do, to_write) CPU_##command,
+#define LOCAL_COMMAND_DEF(command, args, to_do) CPU_##command,
 enum ASM_COMMANDS
 {
     #include "cpu_commands.h"
@@ -13,5 +13,4 @@ enum param_type
     NEXT_RAM,
     NEXT_NOTHING,
     NEXT_STR,
-    NEXT_SLN
 };

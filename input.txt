@@ -1,3 +1,2 @@
-IN
-OUT
+PUSH
 EXIT

@@ -1,10 +1,12 @@
-LOCAL_COMMAND_DEF(EXIT,
+LOCAL_COMMAND_DEF(EXIT, 0,
     {
         printf("\nEnd.\n\n\n");
         i = bin_file_size;
-    },)
+    })
 
-LOCAL_COMMAND_DEF(PUSH,
+
+
+LOCAL_COMMAND_DEF(PUSH, 1,
     {
         switch (code[i + 1])
         {
@@ -35,59 +37,24 @@ LOCAL_COMMAND_DEF(PUSH,
                     stack_push(&cpu_stack, ram_mem[(int)cpu_register[code[i + 3] - 1]]);
                     i += 2;
                 }
+                else
+                    printf("----------\nWrong RAM call from PUSH\n----------\n");
+
+                Sleep(500);
 
             break;
 
             default:
 
-                printf("Something wrong with push param, check asm for bugs.\n");
+                printf("----------\nPUSH got wrong parameter, check assembler for bugs\n----------\n");
 
             break;
         }
 
         i++;
-    },
-
-    {
-        char* curr_pos = strtok(NULL, " \t");
-
-        if (curr_pos && is_register(curr_pos))
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-            put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);
-        }
-
-        else if ((ram_param = is_RAM(curr_pos)) >= 0)
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_RAM);
-
-            if (ram_param == NEXT_NUM)
-            {
-                char* val = strtok(curr_pos, "[]");;
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_NUM);
-
-                put_to_buff_int(command_buffer, printed_chars, val);
-                printed_chars += sizeof(int);
-            }
-
-            else
-            {
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-                put_to_buff_char(command_buffer, printed_chars++, ram_param);
-            }
-        }
-
-        else
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_NUM);
-
-            put_to_buff_num(command_buffer, printed_chars, curr_pos);
-
-            printed_chars += sizeof(stack_type);
-        }
     })
 
-LOCAL_COMMAND_DEF(POP,
+LOCAL_COMMAND_DEF(POP, 1,
     {
         switch (code[i + 1])
         {
@@ -107,6 +74,7 @@ LOCAL_COMMAND_DEF(POP,
 
             case NEXT_RAM:
 
+                Sleep(500);
                 if (code[i + 2] == NEXT_NUM)
                 {
                     assert(!stack_pop(&cpu_stack, &(ram_mem[get_int_from_buff(code, i + 3)])));
@@ -118,219 +86,23 @@ LOCAL_COMMAND_DEF(POP,
                     assert(!stack_pop(&cpu_stack, &(ram_mem[(int)cpu_register[code[i + 3] - 1]])));
                     i += 2;
                 }
+                else
+                    printf("----------\nWrong RAM call from POP\n----------\n");
 
             break;
 
             default:
 
-                printf("Something wrong with PUSH, check asm for bugs.\n");
+                 printf("----------\nPOP got wrong parameter, check assembler for bugs\n----------\n");
 
             break;
         }
-        i += 1;
-    },
-
-    {
-        char* curr_pos = strtok(NULL, " \t");
-
-        if (curr_pos && is_register(curr_pos))
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-            put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);
-        }
-
-        else if (curr_pos && (ram_param = is_RAM(curr_pos)) >= 0)
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_RAM);
-
-            if (ram_param == NEXT_NUM)
-            {
-                char* val = strtok(curr_pos, "[]");
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_NUM);
-                put_to_buff_int(command_buffer, printed_chars, val);
-                printed_chars += sizeof(int);
-            }
-            else
-            {
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-                put_to_buff_char(command_buffer, printed_chars++, ram_param);
-            }
-        }
-
-        else
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_NOTHING);
-        }
+        i++;
     })
 
-LOCAL_COMMAND_DEF(JMP,
-    {
-        int jump_to = get_int_from_buff(code, i + 1); //0;
-
-        /*for (int j = 0; j < sizeof(int); ++j)
-            *((char*)(&jump_to) + j) = code[i + 1 + j];*/
-
-        i = jump_to - 1;
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(JA,
-    {
-        CONDITION_JUMP( > );
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(JAE,
-    {
-        CONDITION_JUMP( >= );
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(JB,
-    {
-        CONDITION_JUMP( < );
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(JBE,
-    {
-        CONDITION_JUMP( <= );
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(JE,
-    {
-        CONDITION_JUMP( == );
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(JNE,
-    {
-        CONDITION_JUMP( != );
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(CALL,
-    {
-        int jump_to = get_int_from_buff(code, i + 1);
-
-        /*for (int j = 0; j < sizeof(int); ++j)
-            *((char*)(&jump_to) + j) = code[i + 1 + j];*/
-
-        stack_push(&return_stack, (stack_type)(i + sizeof(int)));
-        i = jump_to - 1;
-    },
-
-    {
-        make_jump(asm_text, labels, command_buffer, &printed_chars, &label_counter, i);
-    })
-
-LOCAL_COMMAND_DEF(RETURN,
-    {
-        stack_type new_i = 0;
-        assert(!stack_pop(&return_stack, &new_i));
-
-        i = (int)(new_i);
-    },)
 
 
-LOCAL_COMMAND_DEF(ADD,
-    {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b + a);
-    },)
-
-LOCAL_COMMAND_DEF(SUB,
-    {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b - a);
-    },)
-
-LOCAL_COMMAND_DEF(PROD,
-    {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b * a);
-    },)
-
-LOCAL_COMMAND_DEF(DIV,
-    {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b / a);
-    },)
-
-LOCAL_COMMAND_DEF(SQRT,
-    {
-        stack_type a = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        stack_push(&cpu_stack, sqrt(a));
-    },)
-
-LOCAL_COMMAND_DEF(SIN,
-    {
-        stack_type a = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        stack_push(&cpu_stack, sin(a));
-    },)
-
-LOCAL_COMMAND_DEF(ARCSIN,
-    {
-        stack_type a = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        stack_push(&cpu_stack, asin(a));
-    },)
-
-LOCAL_COMMAND_DEF(POWER,
-    {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, pow(b, a));
-    },)
-
-LOCAL_COMMAND_DEF(LOG,
-    {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, log(b)/log(a));
-    },)
-
-LOCAL_COMMAND_DEF(IN,
+LOCAL_COMMAND_DEF(IN, 1,
     {
         switch (code[i + 1])
         {
@@ -354,6 +126,10 @@ LOCAL_COMMAND_DEF(IN,
                     scanf(IN_TYPE, &(ram_mem[(int)cpu_register[code[i + 3] - 1]]));
                     i += 2;
                 }
+                else
+                    printf("----------\nWrong RAM call from IN\n----------\n");
+
+                Sleep(500);
 
             break;
 
@@ -365,45 +141,26 @@ LOCAL_COMMAND_DEF(IN,
             }
             break;
 
+            case NEXT_STR:
+            {
+                printf("%s", code + i + 2);
+                i += sizeof_string(code + i + 2);
+                stack_type a = 0;
+                scanf(IN_TYPE, &a);
+                stack_push(&cpu_stack, a);
+            }
+            break;
+
             default:
 
-                printf("Something went wrong with IN, check asm for bugs.\n");
+                printf("----------\nIN got wrong parameter, check assembler for bugs\n----------\n");
 
             break;
         }
         i++;
-    },
-
-    {
-        char* curr_pos = strtok(NULL, " \t");
-
-        if (curr_pos && is_register(curr_pos))
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-            put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);
-        }
-        else if (curr_pos && (ram_param = is_RAM(curr_pos)) >= 0)
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_RAM);
-
-            if (ram_param == NEXT_NUM)
-            {
-                char* val = strtok(curr_pos, "[]");
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_NUM);
-                put_to_buff_int(command_buffer, printed_chars, val);
-                printed_chars += sizeof(int);
-            }
-            else
-            {
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-                put_to_buff_char(command_buffer, printed_chars++, ram_param);
-            }
-        }
-        else
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_NOTHING);
     })
 
-LOCAL_COMMAND_DEF(OUT,
+LOCAL_COMMAND_DEF(OUT, 1,
     {
         switch (code[i + 1])
         {
@@ -416,6 +173,7 @@ LOCAL_COMMAND_DEF(OUT,
 
             case NEXT_RAM:
 
+                Sleep(500);
                 if (code[i + 2] == NEXT_NUM)
                 {
                     printf(OUT_TYPE, ram_mem[get_int_from_buff(code, i + 3)]);
@@ -427,19 +185,15 @@ LOCAL_COMMAND_DEF(OUT,
                     printf(OUT_TYPE, ram_mem[(int)cpu_register[code[i + 3] - 1]]);
                     i += 2;
                 }
+                else
+                    printf("----------\nWrong RAM call from OUT\n----------\n");
 
             break;
 
             case NEXT_STR:
 
-                printf("%s", code + i + 2);
+                printf("%s\n", code + i + 2);
                 i += sizeof_string(code + i + 2);
-
-            break;
-
-            case NEXT_SLN:
-
-                printf("%c", '\n');
 
             break;
 
@@ -453,68 +207,148 @@ LOCAL_COMMAND_DEF(OUT,
 
             default:
 
-                printf("Something went wrong with OUT, check asm for bugs.\n");
+                printf("----------\nOUT got wrong parameter, check assembler for bugs\n----------\n");
 
             break;
         }
         i++;
-    },
-
-    {
-        char* need_out = asm_text.index[i].start + sizeof_word(asm_text.index[i].start);
-
-        if (is_register(need_out))
-        {
-            put_to_buff_char(command_buffer, printed_chars, NEXT_REG);
-
-            put_to_buff_char(command_buffer, ++printed_chars, need_out[0] - 'a' + 1);
-            strtok(NULL, " \t");
-        }
-
-        else if ((ram_param = is_RAM(need_out)) >= 0)
-        {
-            put_to_buff_char(command_buffer, printed_chars++, NEXT_RAM);
-
-            if (ram_param == NEXT_NUM)
-            {
-                char* val = strtok(need_out, "[]");
-                put_to_buff_char(command_buffer, printed_chars, NEXT_NUM);
-
-                put_to_buff_int(command_buffer, printed_chars + 1, val);
-
-                printed_chars += sizeof(int);
-            }
-            else
-            {
-                put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);
-                put_to_buff_char(command_buffer, printed_chars++, ram_param);
-                strtok(NULL, " \t");
-            }
-        }
-        else if (need_out[0] == '\"')
-        {
-            put_to_buff_char(command_buffer, printed_chars, NEXT_STR);
-
-            assert(need_out = strtok(NULL, "\""));
-
-            put_to_buff_string(command_buffer, printed_chars + 1, need_out);
-
-            printed_chars += sizeof_string(need_out) - 1;
-
-            put_to_buff_char(command_buffer, ++printed_chars, 0);
-        }
-
-        else if (!strcmp(need_out, "\\n"))
-        {
-            put_to_buff_char(command_buffer, printed_chars, NEXT_SLN);
-            strtok(NULL, " \t");
-        }
-
-        else
-            put_to_buff_char(command_buffer, printed_chars, NEXT_NOTHING);
-
-        printed_chars++;
     })
+
+
+
+LOCAL_COMMAND_DEF(JMP, -1,
+    {
+        int jump_to = get_int_from_buff(code, i + 1);
+        i = jump_to - 1;
+    })
+
+LOCAL_COMMAND_DEF(JA, -1,
+    {
+        CONDITION_JUMP( > );
+    })
+
+LOCAL_COMMAND_DEF(JAE, -1,
+    {
+        CONDITION_JUMP( >= );
+    })
+
+LOCAL_COMMAND_DEF(JB, -1,
+    {
+        CONDITION_JUMP( < );
+    })
+
+LOCAL_COMMAND_DEF(JBE, -1,
+    {
+        CONDITION_JUMP( <= );
+    })
+
+LOCAL_COMMAND_DEF(JE, -1,
+    {
+        CONDITION_JUMP( == );
+    })
+
+LOCAL_COMMAND_DEF(JNE, -1,
+    {
+        CONDITION_JUMP( != );
+    })
+
+
+
+
+LOCAL_COMMAND_DEF(CALL, -1,
+    {
+        int jump_to = get_int_from_buff(code, i + 1);
+
+        stack_push(&return_stack, (stack_type)(i + sizeof(int)));
+        i = jump_to - 1;
+    })
+
+LOCAL_COMMAND_DEF(RETURN, 0,
+    {
+        stack_type new_i = 0;
+        assert(!stack_pop(&return_stack, &new_i));
+
+        i = (int)(new_i);
+    })
+
+
+
+LOCAL_COMMAND_DEF(ADD, 0,
+    {
+        stack_type a = 0;
+        stack_type b = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        assert(!stack_pop(&cpu_stack, &b));
+        stack_push(&cpu_stack, b + a);
+    })
+
+LOCAL_COMMAND_DEF(SUB, 0,
+    {
+        stack_type a = 0;
+        stack_type b = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        assert(!stack_pop(&cpu_stack, &b));
+        stack_push(&cpu_stack, b - a);
+    })
+
+LOCAL_COMMAND_DEF(PROD, 0,
+    {
+        stack_type a = 0;
+        stack_type b = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        assert(!stack_pop(&cpu_stack, &b));
+        stack_push(&cpu_stack, b * a);
+    })
+
+LOCAL_COMMAND_DEF(DIV, 0,
+    {
+        stack_type a = 0;
+        stack_type b = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        assert(!stack_pop(&cpu_stack, &b));
+        stack_push(&cpu_stack, b / a);
+    })
+
+LOCAL_COMMAND_DEF(SQRT, 0,
+    {
+        stack_type a = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        stack_push(&cpu_stack, sqrt(a));
+    })
+
+LOCAL_COMMAND_DEF(SIN, 0,
+    {
+        stack_type a = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        stack_push(&cpu_stack, sin(a));
+    })
+
+LOCAL_COMMAND_DEF(ASIN, 0,
+    {
+        stack_type a = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        stack_push(&cpu_stack, asin(a));
+    })
+
+LOCAL_COMMAND_DEF(POW, 0,
+    {
+        stack_type a = 0;
+        stack_type b = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        assert(!stack_pop(&cpu_stack, &b));
+        stack_push(&cpu_stack, pow(b, a));
+    })
+
+LOCAL_COMMAND_DEF(LOG, 0,
+    {
+        stack_type a = 0;
+        stack_type b = 0;
+        assert(!stack_pop(&cpu_stack, &a));
+        assert(!stack_pop(&cpu_stack, &b));
+        stack_push(&cpu_stack, log(b)/log(a));
+    })
+
+
 
 
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1572572256 source:c:\users\kiril\documents\c\cpu\main.cpp
+1572830257 source:c:\users\kiril\documents\c\cpu\main.cpp
 	"musthave_include.h"
 
 1572279668 c:\users\kiril\documents\c\cpu\stringsort.h
@@ -16,7 +16,7 @@
 
 1571428239 c:\users\kiril\documents\c\cpu\stack.cpp
 
-1572560934 c:\users\kiril\documents\c\cpu\asm.h
+1572830520 c:\users\kiril\documents\c\cpu\asm.h
 
 1572346377 source:c:\users\kiril\documents\c\cpu\stringsort.cpp
 	"musthave_include.h"
@@ -24,22 +24,22 @@
 1572346377 source:c:\users\kiril\documents\c\cpu\stack.cpp
 	"musthave_include.h"
 
-1572572257 c:\users\kiril\documents\c\cpu\cpu_commands.h
+1572830178 c:\users\kiril\documents\c\cpu\cpu_commands.h
 
 1572561414 c:\users\kiril\documents\c\cpu\cpu.h
 
-1572561346 source:c:\users\kiril\documents\c\cpu\asm.cpp
+1572830516 source:c:\users\kiril\documents\c\cpu\asm.cpp
 	"musthave_include.h"
 	"cpu_commands.h"
 
-1572560932 source:c:\users\kiril\documents\c\cpu\cpu.cpp
+1572824664 source:c:\users\kiril\documents\c\cpu\cpu.cpp
 	"musthave_include.h"
 	"cpu_commands.h"
 
-1572564179 c:\users\kiril\documents\c\cpu\enum_commands.h
+1572822851 c:\users\kiril\documents\c\cpu\enum_commands.h
 	"cpu_commands.h"
 
-1572346377 c:\users\kiril\documents\c\cpu\musthave_include.h
+1572822851 c:\users\kiril\documents\c\cpu\musthave_include.h
 	<assert.h>
 	<cstring>
 	<iostream>
@@ -51,4 +51,5 @@
 	"enum_commands.h"
 	"cpu.h"
 	"asm.h"
+	<windows.h>
 

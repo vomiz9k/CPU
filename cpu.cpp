@@ -16,11 +16,10 @@
     }                                                        \
     else                                                     \
         i += sizeof(int);                                    \
-    /*printf("Jumping to %d + 1\n\n", i);*/                 \
 }
 
 const int CPU_REGISTER_COUNT = 4;
-const int RAM_SIZE = 1024;
+const int RAM_SIZE = 256;
 
 int run_binary_file(char* bin_name)
 {
@@ -36,14 +35,17 @@ int run_binary_file(char* bin_name)
 
     int bin_file_size = 0;
 
+    bool err_flag = false;
+
     char* code = file_read(bin_name, &bin_file_size);
 
-    #define LOCAL_COMMAND_DEF(command, to_do, to_write) \
-        case CPU_##command:                             \
+    #define LOCAL_COMMAND_DEF(command, args, to_do)                   \
+        case CPU_##command:                                           \
            /* printf("\n-----\nDoing %s\n-----\n", #command);*/       \
-            to_do                                       \
-            break;
+            to_do                                                     \
+        break;
 
+    putchar('\n');
     for(int i = 0; i < bin_file_size; ++i)
     {
         switch (code[i])
@@ -52,6 +54,7 @@ int run_binary_file(char* bin_name)
 
         default:
             printf("----------\nCPU got wrong command, check assembler for bugs\n----------\n");
+            err_flag = true;
         }
     }
 
@@ -62,7 +65,7 @@ int run_binary_file(char* bin_name)
         {
             stack_type result = 0;
             stack_pop(&cpu_stack, &result);
-            printf("\nCPU STACK POP RESULT: "OUT_TYPE"\n", result);
+            printf("\nCPU STACK POP RESULT: " OUT_TYPE "\n", result);
         }
     else
         printf("\nEMPTY CPU STACK\n");
@@ -75,6 +78,8 @@ int run_binary_file(char* bin_name)
     stack_destruct(&cpu_stack);
     stack_destruct(&return_stack);
     free(code);
+
+    return err_flag;
 }
 
 stack_type get_num_from_buff(char* code, int code_index)

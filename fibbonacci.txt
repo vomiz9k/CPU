@@ -1,8 +1,7 @@
 OUT "Type 0 if you want to exit."  
-OUT \n
 RETRY:   
-OUT "Fibbonacci number: "
-IN ax
+IN "Fibbonacci number: "
+POP ax
 PUSH 0
 PUSH ax
 JE EXT
@@ -11,8 +10,6 @@ PUSH ax
 CALL FIB
 OUT "Result: "
 OUT 
-OUT \n
-OUT \n
 JMP RETRY
 
 EXT:  

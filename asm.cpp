@@ -23,22 +23,83 @@ int get_binary_file(char* fin_name, char* fout_name)
 
     //printf("STRCNT = %d\n", asm_text.string_count);
 
-    #define LOCAL_COMMAND_DEF(command, to_do, to_write)                                                        \
-    else if (curr_command != 0 && !strcmp(curr_command, #command))    \
-    {                                                                                                          \
-        put_to_buff_char(command_buffer, printed_chars++, CPU_##command);                                      \
-        to_write                                           \
-                                                             \
-     }
+    #define LOCAL_COMMAND_DEF(command, args, to_do)                                                 \
+    else if (curr_command != 0 && !strcmp(curr_command, #command))                                  \
+    {                                                                                               \
+                                                                                                    \
+        put_to_buff_char(command_buffer, printed_chars++, CPU_##command);                           \
+        if(args > 0)                                                                                \
+        {                                                                                           \
+            char* curr_pos = asm_text.index[i].start + sizeof_word(asm_text.index[i].start);        \
+                                                                                                    \
+            if (curr_pos && curr_pos[0] == '\"')                                                    \
+            {                                                                                       \
+                put_to_buff_char(command_buffer, printed_chars, NEXT_STR);                          \
+                                                                                                    \
+                assert(curr_pos = strtok(curr_pos, "\""));                                          \
+                                                                                                    \
+                put_to_buff_string(command_buffer, printed_chars + 1, curr_pos);                    \
+                                                                                                    \
+                printed_chars += sizeof_string(curr_pos);                                           \
+                                                                                                    \
+                put_to_buff_char(command_buffer, ++printed_chars, 0);                               \
+            }                                                                                       \
+            else                                                                                    \
+            {                                                                                       \
+                curr_pos = strtok(NULL, " \t");                                                     \
+                                                                                                    \
+                if(!curr_pos)                                                                       \
+                    put_to_buff_char(command_buffer, printed_chars++, NEXT_NOTHING);                \
+                                                                                                    \
+                else if (curr_pos && is_register(curr_pos))                                         \
+                {                                                                                   \
+                    put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);                    \
+                    put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \
+                }                                                                                   \
+                                                                                                    \
+                else if ((ram_param = is_RAM(curr_pos)) >= 0)                                       \
+                {                                                                                   \
+                    put_to_buff_char(command_buffer, printed_chars++, NEXT_RAM);                    \
+                                                                                                    \
+                    if (ram_param == NEXT_NUM)                                                      \
+                    {                                                                               \
+                        char* val = strtok(curr_pos, "[]");;                                        \
+                        put_to_buff_char(command_buffer, printed_chars++, NEXT_NUM);                \
+                                                                                                    \
+                        put_to_buff_int(command_buffer, printed_chars, val);                        \
+                        printed_chars += sizeof(int);                                               \
+                    }                                                                               \
+                                                                                                    \
+                    else                                                                            \
+                    {                                                                               \
+                        put_to_buff_char(command_buffer, printed_chars++, NEXT_REG);                \
+                        put_to_buff_char(command_buffer, printed_chars++, ram_param);               \
+                    }                                                                               \
+                }                                                                                   \
+                                                                                                    \
+                else                                                                                \
+                {                                                                                   \
+                    put_to_buff_char(command_buffer, printed_chars++, NEXT_NUM);                    \
+                                                                                                    \
+                    put_to_buff_num(command_buffer, printed_chars, curr_pos);                       \
+                                                                                                    \
+                    printed_chars += sizeof(stack_type);                                            \
+                }                                                                                   \
+            }                                                                                       \
+        }                                                                                           \
+        else if (args == -1)                                                                        \
+            make_jump(labels, command_buffer, &printed_chars, &label_counter);         \
+    }
+
 
     for(int i = 0; i < asm_text.string_count; ++i)
     {
         curr_command = strtok(asm_text.index[i].start, " \t");
+
         if (false)
             printf("Proizoshel trolling...\n");
 
         #include "cpu_commands.h"
-
         else if (curr_command && is_label(curr_command))
         {
             char* name = curr_command;
@@ -59,18 +120,17 @@ int get_binary_file(char* fin_name, char* fout_name)
         }
         else if (!check_syntax(asm_text.index[i]))
         {
-            printf("Syntax error on the line %d.\n", i + 1);
+            printf("Syntax error on the line %d. Unknown command: \"%s\"\n\n", i + 1, curr_command);
             return 1;
         }
-        if (strtok(NULL, " \t"))
+        if (curr_command = strtok(NULL, " \t"))
         {
-            printf("Syntax error on the line %d.\n", i + 1);
+            printf("Syntax error on the line %d. Wrong arg: \"%s\"\n", i + 1, curr_command);
             return 1;
         }
     }
 
     #undef LOCAL_COMMAND_DEF
-
     fwrite(command_buffer, printed_chars, sizeof(char), fout_global);
 
     get_free(asm_text);
@@ -87,7 +147,7 @@ bool check_syntax(indexes index)
     return true;
 }
 
-int make_jump(poem asm_text, label* labels, char* command_buffer, int* char_count, int* label_counter, int i)
+int make_jump(label* labels, char* command_buffer, int* char_count, int* label_counter)
 {
     assert(labels && command_buffer && char_count && label_counter);
 
@@ -127,12 +187,6 @@ int is_RAM(char* str)
 
     else
         return 0;
-    /*int value = atoi(str + counter);
-
-    for(int j = 0; j < i; ++j)
-        value = RAM_mem[value];
-
-    return value; */
 }
 
 bool is_register(char* str)
@@ -168,6 +222,7 @@ int put_to_buff_string(char* buff, int printed_chars, char* str)
 int put_to_buff_char(char* buff, int printed_chars, char c)
 {
     assert(buff);
+
     buff[printed_chars] = c;
 }
 

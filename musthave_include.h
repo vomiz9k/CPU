@@ -9,3 +9,4 @@
 #include "enum_commands.h"
 #include "cpu.h"
 #include "asm.h"
+#include <windows.h>
