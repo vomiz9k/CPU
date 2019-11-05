@@ -275,77 +275,48 @@ LOCAL_COMMAND_DEF(RETURN, 0,
 
 LOCAL_COMMAND_DEF(ADD, 0,
     {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b + a);
+        TWO_ARG_OPERATION( + );
     })
 
 LOCAL_COMMAND_DEF(SUB, 0,
     {
         stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b - a);
+        TWO_ARG_OPERATION( - );
     })
 
 LOCAL_COMMAND_DEF(PROD, 0,
     {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b * a);
+        TWO_ARG_OPERATION( * );
     })
 
 LOCAL_COMMAND_DEF(DIV, 0,
     {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, b / a);
+        TWO_ARG_OPERATION( / );
     })
 
 LOCAL_COMMAND_DEF(SQRT, 0,
     {
-        stack_type a = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        stack_push(&cpu_stack, sqrt(a));
+        ONE_ARG_FUNCTION( sqrt );
     })
 
 LOCAL_COMMAND_DEF(SIN, 0,
     {
-        stack_type a = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        stack_push(&cpu_stack, sin(a));
+        ONE_ARG_FUNCTION( sin );
     })
 
 LOCAL_COMMAND_DEF(ASIN, 0,
     {
-        stack_type a = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        stack_push(&cpu_stack, asin(a));
+        ONE_ARG_FUNCTION( asin );
     })
 
 LOCAL_COMMAND_DEF(POW, 0,
     {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, pow(b, a));
+        TWO_ARG_FUNCTION( pow );
     })
 
 LOCAL_COMMAND_DEF(LOG, 0,
     {
-        stack_type a = 0;
-        stack_type b = 0;
-        assert(!stack_pop(&cpu_stack, &a));
-        assert(!stack_pop(&cpu_stack, &b));
-        stack_push(&cpu_stack, log(b)/log(a));
+        ONE_ARG_FUNCTION( log );
     })
 
 

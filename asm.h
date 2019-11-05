@@ -3,6 +3,7 @@ struct label
 char* name;
 int jmp;
 };
+
 int is_RAM(char* str);
 
 int get_binary_file(char* fin_name, char* fout_name);
@@ -22,7 +23,7 @@ int label_exists(char* name, label* labels, int label_count);
 
 bool is_label(char* str);
 
-int make_jump(label* labels, char* command_buffer, int* char_count, int* label_counter);
+int make_jump(label* labels, char* command_buffer, int char_count, int* label_counter);
 
 
 int sizeof_word(char* ptr);

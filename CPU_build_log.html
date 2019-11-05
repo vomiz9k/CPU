@@ -4,78 +4,488 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
 <body>
 <tt>
-Build started on: <u>04-11-2019 at 04:22.41</u><br />
-Build ended on: <u>04-11-2019 at 04:22.43</u><p />
+Build started on: <u>05-11-2019 at 22:26.32</u><br />
+Build ended on: <u>05-11-2019 at 22:26.38</u><p />
 <b>-------------- Build: Debug in CPU (compiler: GNU GCC Compiler - Strict)---------------</b><br />
-mingw32-g++.exe  -c C:\Users\kiril\Documents\c\CPU\cpu.cpp -o obj\Debug\cpu.o -Wall -fexceptions  -g  -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wmissing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:75:16: warning: invalid suffix on literal; C++11 requires a space between literal and identifier [-Wliteral-suffix]</font><br />
-         printf("%cx == "OUT_TYPE"\n", 'a' + i, cpu_register[i]);<br />
-                ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp: In function 'int run_binary_file(char*)':<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::canary_1' [-Wmissing-field-initializers]</font><br />
-     stack_t cpu_stack = {};<br />
-                          ^<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::name' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::data' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::size' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::max_size' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::canary_2' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:26:26: warning: missing initializer for member 'stack_t::hash_sum' [-Wmissing-field-initializers]</font><br />
+mingw32-g++.exe  -c C:\Users\kiril\Documents\c\CPU\asm.cpp -o obj\Debug\asm.o -Wall -fexceptions  -g  -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wmissing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -D_DEBUG -D_EJUDGE_CLIENT_SIDE -D_EJC<br />
 In file included from C:\Users\kiril\Documents\c\CPU\musthave_include.h:7:0,<br />
-                 from C:\Users\kiril\Documents\c\CPU\cpu.cpp:3:<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\stack.h:1:65: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]</font><br />
- #define STACKCONSTRUCT( _stack ) stack_construct(_stack, #_stack)<br />
-                                                                 ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp:27:5: note: in expansion of macro 'STACKCONSTRUCT'<br />
-     STACKCONSTRUCT(&amp;cpu_stack);<br />
-     ^<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::canary_1' [-Wmissing-field-initializers]</font><br />
-     stack_t return_stack = {};<br />
-                             ^<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::name' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::data' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::size' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::max_size' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::canary_2' [-Wmissing-field-initializers]</font><br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:29:29: warning: missing initializer for member 'stack_t::hash_sum' [-Wmissing-field-initializers]</font><br />
-In file included from C:\Users\kiril\Documents\c\CPU\musthave_include.h:7:0,<br />
-                 from C:\Users\kiril\Documents\c\CPU\cpu.cpp:3:<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\stack.h:1:65: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]</font><br />
- #define STACKCONSTRUCT( _stack ) stack_construct(_stack, #_stack)<br />
-                                                                 ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp:30:5: note: in expansion of macro 'STACKCONSTRUCT'<br />
-     STACKCONSTRUCT(&amp;return_stack);<br />
-     ^<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:12:16: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
-     if (b ZNAK a)                                            \<br />
-                ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp:45:13: note: in definition of macro 'LOCAL_COMMAND_DEF'<br />
-             to_do                                                     \<br />
-             ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu_commands.h:247:9: note: in expansion of macro 'CONDITION_JUMP'<br />
-         CONDITION_JUMP( == );<br />
-         ^<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:12:16: warning: comparing floating point with == or != is unsafe [-Wfloat-equal]</font><br />
-     if (b ZNAK a)                                            \<br />
-                ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp:45:13: note: in definition of macro 'LOCAL_COMMAND_DEF'<br />
-             to_do                                                     \<br />
-             ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu_commands.h:252:9: note: in expansion of macro 'CONDITION_JUMP'<br />
-         CONDITION_JUMP( != );<br />
-         ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp: In function 'stack_type get_num_from_buff(char*, int)':<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:88:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
-     for (int i = 0; i &lt; sizeof(value); ++i)<br />
-                                     ^<br />
-C:\Users\kiril\Documents\c\CPU\cpu.cpp: In function 'int get_int_from_buff(char*, int)':<br />
-<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\cpu.cpp:96:37: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
-     for (int i = 0; i &lt; sizeof(value); ++i)<br />
-                                     ^<br />
+                 from C:\Users\kiril\Documents\c\CPU\asm.cpp:1:<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\stack.h:13:40: warning: conversion to 'stack_type {aka float}' alters 'int' constant value [-Wconversion]</font><br />
+ const stack_type   POISON           = -123456789; //Poison value for empty stack elements<br />
+                                        ^<br />
+In file included from C:\Users\kiril\Documents\c\CPU\musthave_include.h:1:0,<br />
+                 from C:\Users\kiril\Documents\c\CPU\asm.cpp:1:<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int get_binary_file(char*, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:24:22: warning: the address of 'labels' will always evaluate as 'true' [-Waddress]</font><br />
+     assert(labels &amp;&amp; command_buffer &amp;&amp; fout_global);<br />
+                      ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:24:22: warning: the address of 'command_buffer' will always evaluate as 'true' [-Waddress]</font><br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:1:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(EXIT, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:9:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(PUSH, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:57:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(POP, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:105:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(IN, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:163:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(OUT, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:219:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JMP, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:225:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JA, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:230:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JAE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:235:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JB, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:240:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JBE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:245:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:250:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JNE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:258:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(CALL, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:266:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(RETURN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:276:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(ADD, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:281:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SUB, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:287:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(PROD, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:292:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(DIV, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:297:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SQRT, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:302:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SIN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:307:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(ASIN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:312:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(POW, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:59:31: warning: unused variable 'val' [-Wunused-variable]</font><br />
+                         char* val = strtok(curr_pos, "[]");;                                        \<br />
+                               ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:317:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(LOG, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:98:46: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
+                 for(int j = 0; j &lt; sizeof(int); ++j)<br />
+                                              ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:114:47: warning: suggest parentheses around assignment used as truth value [-Wparentheses]</font><br />
+         if (curr_command = strtok(NULL, " \t"))<br />
+                                               ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:1:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(EXIT, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:1:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(EXIT, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:9:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(PUSH, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:9:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(PUSH, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:57:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(POP, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:57:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(POP, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:105:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(IN, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:105:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(IN, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:163:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(OUT, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:163:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(OUT, 1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:219:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JMP, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:219:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JMP, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:225:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JA, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:225:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JA, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:230:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JAE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:230:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JAE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:235:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JB, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:235:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JB, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:240:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JBE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:240:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JBE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:245:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:245:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:250:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JNE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:250:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(JNE, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:258:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(CALL, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:258:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(CALL, -1,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:266:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(RETURN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:266:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(RETURN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:276:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(ADD, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:276:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(ADD, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:281:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SUB, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:281:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SUB, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:287:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(PROD, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:287:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(PROD, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:292:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(DIV, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:292:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(DIV, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:297:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SQRT, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:297:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SQRT, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:302:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SIN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:302:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(SIN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:307:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(ASIN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:307:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(ASIN, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:312:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(POW, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:312:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(POW, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:155:87: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                     put_to_buff_char(command_buffer, printed_chars++, *curr_pos - 'a' + 1);         \<br />
+                                                                                       ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:317:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(LOG, 0,<br />
+ ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:174:84: warning: conversion to 'char' from 'int' may alter its value [-Wconversion]</font><br />
+                         put_to_buff_char(command_buffer, printed_chars++, ram_param);               \<br />
+                                                                                    ^<br />
+C:\Users\kiril\Documents\c\CPU\cpu_commands.h:317:1: note: in expansion of macro 'LOCAL_COMMAND_DEF'<br />
+ LOCAL_COMMAND_DEF(LOG, 0,<br />
+ ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int make_jump(label*, char*, int, int*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:243:38: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
+         for(int j = 0; j &lt; sizeof(int); ++j)<br />
+                                      ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:251:38: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
+         for(int j = 0; j &lt; sizeof(int); ++j)<br />
+                                      ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int put_to_buff_num(char*, int, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:327:48: warning: conversion to 'stack_type {aka float}' from 'double' may alter its value [-Wconversion]</font><br />
+     stack_type value = TRANSLATE_FUNC(value_ptr);<br />
+                                                ^<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:329:35: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
+     for(int i =0; i &lt; sizeof(value); ++i)<br />
+                                   ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int put_to_buff_int(char*, int, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:339:35: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]</font><br />
+     for(int i =0; i &lt; sizeof(value); ++i)<br />
+                                   ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int make_jump(label*, char*, int, int*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:256:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int put_to_buff_string(char*, int, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:310:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int put_to_buff_char(char*, int, char)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:321:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int put_to_buff_num(char*, int, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:331:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int put_to_buff_int(char*, int, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:341:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+C:\Users\kiril\Documents\c\CPU\asm.cpp: In function 'int get_binary_file(char*, char*)':<br />
+<font color="#0000ff">C:\Users\kiril\Documents\c\CPU\asm.cpp:216:1: warning: stack usage is 10720 bytes [-Wstack-usage=]</font><br />
+ }<br />
+ ^<br />
 mingw32-g++.exe  -o bin\Debug\CPU.exe obj\Debug\asm.o obj\Debug\cpu.o obj\Debug\main.o obj\Debug\stack.o obj\Debug\stringsort.o<br />
 Output size is 1,56 MB<br />
-<font color="#0000ff">Process terminated with status 0 (0 minutes, 1 seconds)</font><br />
-<font color="#0000ff">0 errors, 21 warnings (0 minutes, 1 seconds)</font><br />
+<font color="#0000ff">Process terminated with status 0 (0 minutes, 5 seconds)</font><br />
+<font color="#0000ff">0 errors, 85 warnings (0 minutes, 5 seconds)</font><br />
 </tt>
 </body>
 </html>

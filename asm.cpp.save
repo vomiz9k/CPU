@@ -12,9 +12,9 @@ int get_binary_file(char* fin_name, char* fout_name)
     poem asm_text = files_to_poem(fin_name, fout_name);
 
     label labels[LABEL_COUNT] = {};
-    
+
     int label_counter = 0;
-    
+
     int curr_label = 0;
 
     int ram_param = 0;
@@ -25,6 +25,105 @@ int get_binary_file(char* fin_name, char* fout_name)
 
     //printf("STRCNT = %d\n", asm_text.string_count);
 
+    #define LOCAL_COMMAND_DEF(command, args, to_do)                                                 \
+    else if (curr_command != 0 && !strcmp(curr_command, #command))                                  \
+    {                                                                                               \
+        printed_chars++;                                                                            \
+        if(args > 0)                                                                                \
+        {                                                                                           \
+            char* curr_pos = asm_text.index[i].start + sizeof_word(asm_text.index[i].start);        \
+                                                                                                    \
+            if (curr_pos && curr_pos[0] == '\"')                                                    \
+            {                                                                                       \
+                assert(curr_pos = strtok(curr_pos, "\""));                                          \
+                printed_chars +=  1 + sizeof_string(curr_pos);                                      \
+            }                                                                                       \
+            else                                                                                    \
+            {                                                                                       \
+                curr_pos = strtok(NULL, " \t");                                                     \
+                                                                                                    \
+                if(!curr_pos)                                                                       \
+                    printed_chars++;                                                               \
+                                                                                                    \
+                else if (curr_pos && is_register(curr_pos))                                         \
+                {                                                                                   \
+                    printed_chars += 2;                                                             \
+                }                                                                                   \
+                                                                                                    \
+                else if ((ram_param = is_RAM(curr_pos)) >= 0)                                       \
+                {                                                                                   \
+                    printed_chars++;                                                                \
+                                                                                                    \
+                    if (ram_param == NEXT_NUM)                                                      \
+                    {                                                                               \
+                        char* val = strtok(curr_pos, "[]");;                                        \
+                        printed_chars++;                                                            \
+                        printed_chars += sizeof(int);                                               \
+                    }                                                                               \
+                                                                                                    \
+                    else                                                                            \
+                    {                                                                               \
+                        printed_chars += 2;                                                         \
+                    }                                                                               \
+                }                                                                                   \
+                                                                                                    \
+                else                                                                                \
+                {                                                                                   \
+                    printed_chars++;                                                                \
+                                                                                                    \
+                    printed_chars += sizeof(stack_type);                                            \
+                }                                                                                   \
+            }                                                                                       \
+        }                                                                                           \
+        else if (args == -1)                                                                        \
+        {                                                                                           \
+            make_jump(labels, command_buffer, printed_chars, &label_counter);                       \
+            printed_chars += sizeof(int);                                                           \
+        }                                                                                           \
+    }
+
+    for(int i = 0; i < asm_text.string_count; ++i)
+    {
+        curr_command = strtok(asm_text.index[i].start, " \t");
+
+        if (false)
+            printf("Proizoshel trolling...\n");
+
+        #include "cpu_commands.h"
+        else if (curr_command && is_label(curr_command))
+        {
+            char* name = strtok(asm_text.index[i].start, ":");
+            if ((curr_label = label_exists(name, labels, label_counter)) >= 0)
+            {
+                for(int j = 0; j < sizeof(int); ++j)
+                    put_to_buff_char(command_buffer, labels[curr_label].jmp + j, *((char*)(&printed_chars) + j));
+
+                labels[curr_label].jmp = printed_chars;
+            }
+            else
+            {
+                labels[label_counter].name = name;
+                labels[label_counter++].jmp = printed_chars;
+            }
+        }
+        else if (!check_syntax(asm_text.index[i]))
+        {
+            printf("Syntax error on the line %d. Unknown command: \"%s\"\n\n", i + 1, curr_command);
+            return 1;
+        }
+        if (curr_command = strtok(NULL, " \t"))
+        {
+            printf("Syntax error on the line %d. Wrong arg: \"%s\"\n", i + 1, curr_command);
+            return 1;
+        }
+    }
+    #undef LOCAL_COMMAND_DEF
+    
+    get_free(asm_text);
+    
+    printed_chars = 0;
+    asm_text = files_to_poem(fin_name, fout_name);
+    
     #define LOCAL_COMMAND_DEF(command, args, to_do)                                                 \
     else if (curr_command != 0 && !strcmp(curr_command, #command))                                  \
     {                                                                                               \
@@ -90,9 +189,11 @@ int get_binary_file(char* fin_name, char* fout_name)
             }                                                                                       \
         }                                                                                           \
         else if (args == -1)                                                                        \
-            make_jump(labels, command_buffer, &printed_chars, &label_counter);         \
+        {                                                                                           \
+            make_jump(labels, command_buffer, printed_chars, &label_counter);                       \
+            printed_chars += sizeof(int);                                                           \
+        }                                                                                           \
     }
-
 
     for(int i = 0; i < asm_text.string_count; ++i)
     {
@@ -102,44 +203,22 @@ int get_binary_file(char* fin_name, char* fout_name)
             printf("Proizoshel trolling...\n");
 
         #include "cpu_commands.h"
-        else if (curr_command && is_label(curr_command))
-        {
-            char* name = curr_command;
-            *(name + sizeof_word(name) - 2) = 0;
 
-            if ((curr_label = label_exists(name, labels, label_counter)) >= 0)
-            {
-                for(int j = 0; j < sizeof(int); ++j)
-                    put_to_buff_char(command_buffer, labels[curr_label].jmp + j, *((char*)(&printed_chars) + j));
-
-                labels[curr_label].jmp = printed_chars;
-            }
-            else
-            {
-                labels[label_counter].name = name;
-                labels[label_counter++].jmp = printed_chars;
-            }
-        }
-        else if (!check_syntax(asm_text.index[i]))
-        {
-            printf("Syntax error on the line %d. Unknown command: \"%s\"\n\n", i + 1, curr_command);
-            return 1;
-        }
-        if (curr_command = strtok(NULL, " \t"))
-        {
-            printf("Syntax error on the line %d. Wrong arg: \"%s\"\n", i + 1, curr_command);
-            return 1;
-        }
     }
 
+
+
+
     #undef LOCAL_COMMAND_DEF
+
     fwrite(command_buffer, printed_chars, sizeof(char), fout_global);
 
     get_free(asm_text);
     fclose(fout_global);
     return 0;
 }
-
+/*!This function checks syntax of input string.
+@param [in] index - struct which has start and end of string.*/
 bool check_syntax(indexes index)
 {
     char empty_symbs[] = " \t";
@@ -149,11 +228,16 @@ bool check_syntax(indexes index)
     return true;
 }
 
-int make_jump(label* labels, char* command_buffer, int* char_count, int* label_counter)
+/*!This function makes jump code in buffer.
+@param [in] labels - array of labels.
+@param [in] command_buffer - binary buffer.
+@param [in] char_count - pointer on count of printed chars in buffer.
+@param [in] label_counter - pointer on int which whows labels count.*/
+int make_jump(label* labels, char* command_buffer, int char_count, int* label_counter)
 {
     assert(labels && command_buffer && char_count && label_counter);
 
-    int printed_chars = *char_count;
+    int printed_chars = char_count;
     int curr_label = 0;
 
     char* curr_pos = strtok(NULL, " \t");
@@ -172,11 +256,10 @@ int make_jump(label* labels, char* command_buffer, int* char_count, int* label_c
 
         (*label_counter)++;
     }
-
-    printed_chars += sizeof(int);
-    *char_count = printed_chars;
 }
 
+/*!This func checks input string for RAM call.
+@param [in] str - input string.*/
 int is_RAM(char* str)
 {
     assert(str);
@@ -191,6 +274,8 @@ int is_RAM(char* str)
         return 0;
 }
 
+/*!This func checks input string for register call.
+@param [in] str - input string.*/
 bool is_register(char* str)
 {
     assert(str);
@@ -201,6 +286,10 @@ bool is_register(char* str)
         return false;
 }
 
+/*!This func checks exists label or not.
+@param [in] name - label name.
+@param [in] labels - array of labels.
+@param [in] label_count - current count of labels.*/
 int label_exists(char* name, label* labels, int label_count)
 {
     assert(name && labels);
@@ -212,7 +301,10 @@ int label_exists(char* name, label* labels, int label_count)
     return -1;
 }
 
-
+/*!This func puts string to binary buffer
+@param [in] buff - binary buffer.
+@param [in] printed_chars - count of printed chars in buffer.
+@param [in] str - string we need to put.*/
 int put_to_buff_string(char* buff, int printed_chars, char* str)
 {
     assert(str && buff);
@@ -220,7 +312,10 @@ int put_to_buff_string(char* buff, int printed_chars, char* str)
     sprintf(buff + printed_chars, "%s", str);
 }
 
-
+/*!This func puts char to binary buffer
+@param [in] buff - binary buffer.
+@param [in] printed_chars - count of printed chars in buffer.
+@param [in]  - string we need to put.*/
 int put_to_buff_char(char* buff, int printed_chars, char c)
 {
     assert(buff);

@@ -6,13 +6,14 @@ int main()
 {
     //char fin_name[FILE_SIZE] = {}, fout_name[FILE_SIZE] = {};
 
-    char *fin_name = "input.txt", *fout_name = "output.bin";
+    char *fin_name = "square_problem.txt", *fout_name = "output.bin";
 
     //char *fin_name = "fibbonacci.txt", *fout_name = "output.bin";
 
     //char *fin_name = "factorial.txt", *fout_name = "output.bin";
 
     //get_file_names(fin_name, fout_name);
+
     int err_code = get_binary_file(fin_name, fout_name);
 
     if (!err_code)

@@ -18,6 +18,31 @@
         i += sizeof(int);                                    \
 }
 
+#define ONE_ARG_FUNCTION( func )                             \
+    {                                                        \
+        stack_type a = 0;                                    \
+        assert(!stack_pop(&cpu_stack, &a));                  \
+        stack_push(&cpu_stack, func(a));                     \
+    }
+
+#define TWO_ARG_FUNCTION( func )                             \
+    {                                                        \
+        stack_type a = 0;                                    \
+        stack_type b = 0;                                    \
+        assert(!stack_pop(&cpu_stack, &a));                  \
+        assert(!stack_pop(&cpu_stack, &b));                  \
+        stack_push(&cpu_stack, func(b, a));                  \
+    }                                                        \
+
+#define TWO_ARG_OPERATION( znak )                            \
+    {                                                        \
+        stack_type a = 0;                                    \
+        stack_type b = 0;                                    \
+        assert(!stack_pop(&cpu_stack, &a));                  \
+        assert(!stack_pop(&cpu_stack, &b));                  \
+        stack_push(&cpu_stack, b znak a);                    \
+    }                                                        \
+
 const int CPU_REGISTER_COUNT = 4;
 const int RAM_SIZE = 256;
 
@@ -41,7 +66,7 @@ int run_binary_file(char* bin_name)
 
     #define LOCAL_COMMAND_DEF(command, args, to_do)                   \
         case CPU_##command:                                           \
-           /* printf("\n-----\nDoing %s\n-----\n", #command);*/       \
+            /*printf("\n-----\nDoing %s\n-----\n", #command); */\
             to_do                                                     \
         break;
 

@@ -18,6 +18,31 @@
         i += sizeof(int);                                    \
 }
 
+#define ONE_ARG_FUNCTION( func )                             \
+    {                                                        \
+        stack_type a = 0;                                    \              i[ik[[[[[[[[[[[[[[[
+        assert(!stack_pop(&cpu_stack, &a));                  \
+        stack_push(&cpu_stack, func(a));                     \
+    }
+
+#define TWO_ARG_FUNCTION( func )                             \
+    {                                                        \
+        stack_type a = 0;                                    \
+        stack_type b = 0;                                    \
+        assert(!stack_pop(&cpu_stack, &a));                  \
+        assert(!stack_pop(&cpu_stack, &b));                  \
+        stack_push(&cpu_stack, func(b, a));                  \
+    }                                                        \
+
+#define TWO_ARG_OPERATION( znak )                            \
+    {                                                        \
+        stack_type a = 0;                                    \
+        stack_type b = 0;                                    \
+        assert(!stack_pop(&cpu_stack, &a));                  \
+        assert(!stack_pop(&cpu_stack, &b));                  \
+        stack_push(&cpu_stack, b znak a);                    \
+    }                                                        \
+
 const int CPU_REGISTER_COUNT = 4;
 const int RAM_SIZE = 256;
 
@@ -65,7 +90,7 @@ int run_binary_file(char* bin_name)
         {
             stack_type result = 0;
             stack_pop(&cpu_stack, &result);
-            printf("\nCPU STACK POP RESULT: "OUT_TYPE"\n", result);
+            printf("\nCPU STACK POP RESULT: " OUT_TYPE "\n", result);
         }
     else
         printf("\nEMPTY CPU STACK\n");

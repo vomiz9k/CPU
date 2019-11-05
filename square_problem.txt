@@ -1,47 +1,109 @@
-OUT "This is working only if a != 0 and b^2-4ac >= 0."
-OUT \n
-OUT "A: "
+OUT "A:"
 IN ax
-OUT "B: "
+OUT "B:"
 IN bx
-OUT "C: "
+OUT "C:"
 IN cx
+
+PUSH ax
+PUSH 0
+JE ZERO_A
 PUSH bx
 PUSH bx
 PROD
+PUSH 4
 PUSH ax
 PUSH cx
 PROD
-PUSH 4
 PROD
 SUB
-SQRT
 POP dx
+
+PUSH dx
+PUSH 0
+JA TWO_ROOTS
+
+PUSH 0
+PUSH dx
+JA NO_ROOTS
+
 PUSH 0
 PUSH bx
 SUB
-POP bx
-PUSH bx
-PUSH dx
-ADD
 PUSH 2
-PUSH ax
-PROD
 DIV
-POP cx
+PUSH ax
+DIV
+JMP ONE_ROOT
+
+
+
+
+ZERO_A:
 PUSH bx
-PUSH dx
+PUSH 0
+JE ZERO_A_AND_B
+
+PUSH 0
+PUSH cx
 SUB
-PUSH 2
-PUSH ax
-PROD
+PUSH bx
 DIV
-POP dx
-OUT "RESULT1: "
-OUT cx
-OUT \n
-OUT "RESULT2: "
-OUT dx
-OUT \n
+JMP ONE_ROOT
+
+ZERO_A_AND_B:
+PUSH cx
+PUSH 0
+JE INF_ROOTS
+JMP NO_ROOTS
+
+NO_ROOTS:
+	OUT "No roots"
+	EXIT 
+
+INF_ROOTS:
+	OUT "Infinity roots"
+	EXIT
+
+TWO_ROOTS:
+	PUSH 0
+	PUSH bx
+	SUB
+	POP bx
+
+	PUSH dx
+	SQRT
+	POP dx
+
+	PUSH bx
+	PUSH dx
+	ADD
+	PUSH ax
+	DIV
+	PUSH 2
+	DIV
+	POP [1]
+
+	PUSH bx
+	PUSH dx
+	SUB
+	PUSH ax
+	DIV
+	PUSH 2
+	DIV
+	POP [2]
+
+	OUT "ROOT ONE:"
+	OUT [1]
+	OUT " "
+	OUT "ROOT TWO:"
+	OUT [2]
+
+	EXIT
+
+ONE_ROOT:
+OUT "Only root:"
+OUT 
 EXIT
+
 
